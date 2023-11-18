@@ -4,14 +4,18 @@ import { AvailableProduct } from "~/models/Product";
 import { useQuery, useQueryClient, useMutation } from "react-query";
 import React from "react";
 
+axios.defaults.headers.common["Accept"] = "application/json";
+axios.defaults.headers.common["Content-Type"] = "application/json";
+
 export function useAvailableProducts() {
   return useQuery<AvailableProduct[], AxiosError>(
     "available-products",
     async () => {
       const res = await axios.get<AvailableProduct[]>(
-        `${API_PATHS.bff}/product/available`
+        // `${API_PATHS.bff}/product/available`
+        `${API_PATHS.bff}/products`
       );
-      return res.data;
+      return JSON.parse(res.data as any);
     }
   );
 }
