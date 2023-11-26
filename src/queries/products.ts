@@ -15,7 +15,7 @@ export function useAvailableProducts() {
         // `${API_PATHS.bff}/product/available`
         `${API_PATHS.bff}/products`
       );
-      return JSON.parse(res.data as any);
+      return res.data as any;
     }
   );
 }
